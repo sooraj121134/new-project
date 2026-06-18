@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment Successful</title>
+
+<style>
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#0f172a,#000);
+font-family:Arial;
+color:white;
+}
+
+/* CARD */
+.container{
+text-align:center;
+padding:40px;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(15px);
+border:1px solid rgba(255,255,255,0.2);
+border-radius:20px;
+box-shadow:0 10px 40px rgba(0,0,0,0.6);
+}
+
+/* CIRCLE */
+.circle{
+width:100px;
+height:100px;
+border-radius:50%;
+border:4px solid #22c55e;
+margin:0 auto 20px;
+position:relative;
+animation:pop 0.4s ease-in-out;
+}
+
+/* TICK */
+.check{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-60%) rotate(45deg);
+width:25px;
+height:50px;
+border-right:4px solid #22c55e;
+border-bottom:4px solid #22c55e;
+animation:draw 0.6s ease forwards;
+}
+
+/* ANIMATION */
+@keyframes draw{
+0%{
+width:0;
+height:0;
+opacity:0;
+}
+100%{
+width:25px;
+height:50px;
+opacity:1;
+}
+}
+
+@keyframes pop{
+0%{transform:scale(0);}
+100%{transform:scale(1);}
+}
+
+/* TEXT */
+h1{
+margin:10px 0;
+font-size:24px;
+}
+
+p{
+opacity:0.8;
+margin-bottom:20px;
+}
+
+/* BUTTON */
+button{
+padding:10px 20px;
+border:none;
+border-radius:10px;
+background:#22c55e;
+color:white;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.05);
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="circle">
+<div class="check"></div>
+</div>
+
+<h1>Payment Successful</h1>
+<p>Your order has been placed successfully 🎉</p>
+
+<button onclick="goHome()">
+Continue Shopping
+</button>
+
+</div>
+
+<script>
+function goHome(){
+window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>

@@ -1,29 +1,155 @@
-<div class="payment-section">
-    <h2>Select Payment Method</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cart</title>
 
-    <label>
-        <input type="radio" name="payment" value="UPI" checked>
-        UPI (Google Pay / PhonePe / Paytm)
-    </label><br><br>
+<style>
+body{
+background:linear-gradient(135deg,#000,#111827);
+color:white;
+font-family:Arial;
+padding:20px;
+}
 
-    <label>
-        <input type="radio" name="payment" value="Card">
-        Credit / Debit Card
-    </label><br><br>
+h1{text-align:center;}
 
-    <label>
-        <input type="radio" name="payment" value="Net Banking">
-        Net Banking
-    </label><br><br>
+.cart-item{
+background:rgba(31,41,55,0.9);
+padding:15px;
+margin:10px 0;
+border-radius:12px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
 
-    <label>
-        <input type="radio" name="payment" value="COD">
-        Cash on Delivery
-    </label>
+.controls button{
+padding:5px 10px;
+margin:0 3px;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+.remove{background:red;color:white;}
+.plus{background:#22c55e;color:white;}
+.minus{background:#f59e0b;color:white;}
+
+.total{
+text-align:center;
+font-size:22px;
+margin-top:20px;
+}
+
+input,textarea{
+width:100%;
+padding:10px;
+margin:8px 0;
+border-radius:8px;
+border:none;
+}
+
+button.pay{
+width:100%;
+padding:12px;
+margin-top:15px;
+background:linear-gradient(45deg,#22c55e,#16a34a);
+border:none;
+color:white;
+font-size:18px;
+border-radius:10px;
+cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🛒 Your Cart</h1>
+
+<div id="cartBox"></div>
+
+<div class="total">
+Total: ₹<span id="total">0</span>
 </div>
 
-<button class="buy" onclick="buyNow()">
-    
-<nav>
-<a href="payment.html">Proceed to Pay</a>
-</nav>
+<h2>Delivery Details</h2>
+
+<input id="name" placeholder="Name">
+<input id="phone" placeholder="Phone">
+<textarea id="address" placeholder="Address"></textarea>
+
+<button class="pay" onclick="checkout()">Proceed To Pay</button>
+
+<script>
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function render(){
+let box = document.getElementById("cartBox");
+box.innerHTML = "";
+
+let total = 0;
+
+cart.forEach((item,i)=>{
+total += item.price * item.qty;
+
+box.innerHTML += `
+<div class="cart-item">
+<div>
+<h3>${item.name}</h3>
+<p>₹${item.price} x ${item.qty}</p>
+</div>
+
+<div class="controls">
+<button class="minus" onclick="changeQty(${i},-1)">-</button>
+<button class="plus" onclick="changeQty(${i},1)">+</button>
+<button class="remove" onclick="removeItem(${i})">X</button>
+</div>
+</div>
+`;
+});
+
+document.getElementById("total").innerText = total;
+localStorage.setItem("cart",JSON.stringify(cart));
+}
+
+function changeQty(i,val){
+cart[i].qty += val;
+if(cart[i].qty < 1) cart.splice(i,1);
+render();
+}
+
+function removeItem(i){
+cart.splice(i,1);
+render();
+}
+
+function checkout(){
+if(cart.length==0){
+alert("Cart empty");
+return;
+}
+
+let name = document.getElementById("name").value;
+let phone = document.getElementById("phone").value;
+let address = document.getElementById("address").value;
+
+if(!name||!phone||!address){
+alert("Fill delivery details");
+return;
+}
+
+alert("Order Placed Successfully 🚀");
+localStorage.removeItem("cart");
+window.location.href="index.html";
+}
+
+render();
+
+</script>
+
+</body>
+</html>

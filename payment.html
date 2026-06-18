@@ -1,18 +1,104 @@
-<div class="delivery-section">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delivery Details</title>
 
-    <h2>Delivery Details</h2>
+<style>
+body{
+margin:0;
+font-family:Arial;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#ff6a00,#ee0979,#4facfe);
+background-size:300% 300%;
+animation:bg 8s infinite alternate;
+}
 
-    <input type="text" id="name" placeholder="Full Name" required>
+/* ANIMATED BACKGROUND */
+@keyframes bg{
+0%{background-position:left;}
+100%{background-position:right;}
+}
 
-    <input type="tel" id="phone" placeholder="Phone Number" required>
+/* CARD */
+.box{
+width:350px;
+padding:25px;
+background:white;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
+text-align:center;
+}
 
-    <textarea id="address" placeholder="Full Delivery Address" required></textarea>
+/* TITLE */
+h2{
+color:#333;
+margin-bottom:15px;
+}
 
-    <input type="text" id="pincode" placeholder="Pincode" required>
+/* INPUTS */
+input,textarea{
+width:100%;
+padding:10px;
+margin:8px 0;
+border-radius:10px;
+border:1px solid #ddd;
+outline:none;
+font-size:14px;
+}
 
+textarea{
+height:80px;
+resize:none;
+}
+
+/* BUTTON */
+button{
+width:100%;
+padding:12px;
+border:none;
+border-radius:10px;
+background:linear-gradient(45deg,#ff512f,#dd2476);
+color:white;
+font-size:16px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+/* SMALL TEXT */
+small{
+color:gray;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>🚚 Delivery Details</h2>
+<small>Fill your information carefully</small>
+
+<input type="text" id="name" placeholder="Full Name">
+<input type="tel" id="phone" placeholder="Phone Number">
+<textarea id="address" placeholder="Full Address"></textarea>
+<input type="text" id="pincode" placeholder="Pincode">
+
+<a href="succes.html">
+    <button onclick="placeOrder()">
+        Place Order
+    </button>
+</a>
 
 </div>
 
-<button class="buy" onclick="proceedToPay()">
-    Proceed to Pay
-</button>
+</body>
+</html>
