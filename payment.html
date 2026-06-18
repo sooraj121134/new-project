@@ -1,0 +1,39 @@
+<div class="delivery-section">
+
+    <h2>Delivery Details</h2>
+
+    <input type="text" id="name" placeholder="Full Name" required>
+
+    <input type="tel" id="phone" placeholder="Phone Number" required>
+
+    <textarea id="address" placeholder="Full Delivery Address" required></textarea>
+
+    <input type="text" id="pincode" placeholder="Pincode" required>
+
+    <h2>Select Payment Method</h2>
+
+    <label>
+        <input type="radio" name="payment" value="UPI" checked>
+        UPI (Google Pay / PhonePe / Paytm)
+    </label>
+
+    <label>
+        <input type="radio" name="payment" value="Card">
+        Credit / Debit Card
+    </label>
+
+    <label>
+        <input type="radio" name="payment" value="Net Banking">
+        Net Banking
+    </label>
+
+    <label>
+        <input type="radio" name="payment" value="Cash on Delivery">
+        Cash on Delivery
+    </label>
+
+</div>
+
+<button class="buy" onclick="proceedToPay()">
+    Proceed to Pay
+</button>
